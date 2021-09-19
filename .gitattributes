@@ -1,2 +1,2 @@
 # encrypt files with git-crypt
-templates/dummy.secret.yml filter=git-crypt diff=git-crypt
+templates/dummy.secret.yaml filter=git-crypt diff=git-crypt
