@@ -13,6 +13,7 @@ using an istio gateway.
 <fav-pkg-manager-command> git-crypt
 
 # init git-crypt in repo
+# ! do not repeat after first init !
 git-crypt init
 ```
 
@@ -29,3 +30,5 @@ git-crypt add-gpg-user KJLDFUFOEJFLFE
 # validate a files is locked
 git-crypt [lock | unlock]
 ```
+
+Use the `.gitattributes` file to manage encrypted files.
