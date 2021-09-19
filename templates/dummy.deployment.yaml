@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "dummy-server-chart.fullname" . }}-depl
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "dummy-server-chart.fullname" . }}-depl
+  replicas: 1
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: {{ template "dummy-server-chart.fullname" . }}-depl
+    spec:
+      containers:
+      - name: {{ template "dummy-server-chart.fullname" . }}-depl
+        image: {{ .Values.images.dummy_server.name }}:{{ .Values.images.dummy_server.tag }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        ports:
+          - name: http
+            containerPort: {{ .Values.images.dummy_server.port }}
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: 0.2
+          requests:
+            memory: 128Mi
+            cpu: 0.1
+      # securityContext:
+        # runAsUser: 1001
+        # runAsNonRoot: true

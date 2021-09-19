@@ -1,0 +1,10 @@
+namespace: dummy-server
+imagePullPolicy: IfNotPresent
+vsHost: example.dummy-server.com
+vsGateway: istio-system/default-gateway
+
+images:
+  dummy_server:
+    name: busykoala/dummy_server
+    tag: latest
+    port: 8000

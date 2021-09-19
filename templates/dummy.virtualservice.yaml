@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ template "dummy-server-chart.fullname" . }}-vs
+  namespace: {{ .Values.namespace }}
+spec:
+  hosts:
+  - {{ .Values.vsHost }}
+  gateways:
+  - {{ .Values.vsGateway }}
+  http:
+  - match:
+    - port: 443
+    route:
+    - destination:
+        host: {{ template "dummy-server-chart.fullname" . }}-svc
+        port:
+          number: {{ .Values.images.dummy_server.port }}
