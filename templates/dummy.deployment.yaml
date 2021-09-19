@@ -18,6 +18,12 @@ spec:
       - name: {{ template "dummy-server-chart.fullname" . }}-depl
         image: {{ .Values.images.dummy_server.name }}:{{ .Values.images.dummy_server.tag }}
         imagePullPolicy: {{ .Values.imagePullPolicy }}
+        env:
+        - name: DUMMY_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: {{ template "dummy-server-chart.fullname" . }}-secret
+              key: api-exposed
         ports:
           - name: http
             containerPort: {{ .Values.images.dummy_server.port }}
